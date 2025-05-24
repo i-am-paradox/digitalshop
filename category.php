@@ -3,15 +3,25 @@ session_start(); // Start session
 require_once 'db_config.php'; // Database connection
 require_once 'product_functions.php'; // Product fetching functions
 
-// Fetch active products
-$products = get_active_products($mysqli);
+// Get Category Name from URL
+$category_name = '';
+if (isset($_GET['name']) && trim($_GET['name']) !== '') {
+    $category_name = htmlspecialchars(trim($_GET['name']));
+} else {
+    // Redirect to index.php if no category name is provided
+    header("Location: index.php");
+    exit;
+}
+
+// Fetch active products for the specified category
+$products = get_active_products($mysqli, $category_name);
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Account Store - Products</title> <!-- Updated title slightly -->
+    <title>Products in <?php echo $category_name; ?> - Social & OTT Hub</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
@@ -19,8 +29,8 @@ $products = get_active_products($mysqli);
     <nav>
         <div class="site-title">Social & OTT Hub</div>
         <ul>
-            <li><a href="index.php">Home</a></li> <!-- Changed from # to index.php for clarity -->
-            <li><a href="#products">Products</a></li> <!-- Link to product grid if desired, or remove if redundant -->
+            <li><a href="index.php">Home</a></li>
+            <li><a href="index.php#products">Products</a></li> <!-- Link to products section on homepage -->
             <li><a href="category.php?name=Entertainment">Entertainment</a></li>
             <li><a href="category.php?name=Music">Music</a></li>
             <li><a href="category.php?name=Social+Media">Social Media</a></li>
@@ -29,15 +39,13 @@ $products = get_active_products($mysqli);
             <li><a href="mailto:your-email@example.com">Contact</a></li>
         </ul>
     </nav>
-    <section class="hero-section" data-aos="zoom-in" data-aos-duration="800">
-        <h2>Premium Subscriptions at the Best Prices.</h2>
-        <!-- Optional paragraph: <p>Your one-stop shop for all digital needs, available instantly.</p> -->
-    </section>
-    <header data-aos="fade-in" data-aos-delay="300">
-        <h1>Social & OTT Hub</h1> <!-- This is the main page title -->
-    </header>
+
     <main>
-        <div class="product-grid-container" id="products"> <!-- Added id for potential anchor link -->
+        <header data-aos="fade-in" style="text-align: center; margin-top: 20px; margin-bottom: 30px;"> <!-- Simplified header for category page -->
+            <h1>Category: <?php echo $category_name; ?></h1>
+        </header>
+
+        <div class="product-grid-container" id="products">
             <?php
             if (!empty($products)) {
                 $aos_delay = 100; // Initialize AOS delay counter
@@ -64,12 +72,13 @@ $products = get_active_products($mysqli);
                 } // end foreach product
             } else {
             ?>
-            <p style="text-align: center; grid-column: 1 / -1;">No products found. Please check back later!</p>
+            <p data-aos="fade-in" style="text-align: center; grid-column: 1 / -1; padding: 20px;">No products found in the '<?php echo $category_name; ?>' category.</p>
             <?php
             } // end if !empty products
             ?>
         </div>
     </main>
+
     <footer>
         <p>© <?php echo date("Y"); ?> Social & OTT Hub. All rights reserved.</p>
         <p>

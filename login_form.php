@@ -15,6 +15,10 @@
         <ul>
             <li><a href="index.php">Home</a></li>
             <li><a href="index.php#products">Products</a></li>
+            <li><a href="category.php?name=Entertainment">Entertainment</a></li>
+            <li><a href="category.php?name=Music">Music</a></li>
+            <li><a href="category.php?name=Social+Media">Social Media</a></li>
+            <li><a href="category.php?name=Productivity">Productivity</a></li>
             <li><a href="#">About Us</a></li>
             <li><a href="mailto:your-email@example.com">Contact</a></li>
         </ul>
