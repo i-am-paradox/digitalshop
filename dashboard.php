@@ -2,9 +2,7 @@
 session_start();
 
 // 1. Session Start and Authentication Check
-// Check if user_id and username are set in the session
 if (!isset($_SESSION['user_id']) || !isset($_SESSION['username'])) {
-    // If not set, redirect to login_form.php and exit
     header("Location: login_form.php");
     exit;
 }
@@ -14,77 +12,59 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['username'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Dashboard</title>
+    <title>User Dashboard - Social & OTT Hub</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        /* Basic dashboard styling - can be moved to style.css later */
-        body {
-            /* Re-apply some body styles if style.css doesn't cover them fully for non-form pages */
-            font-family: 'Roboto', 'Open Sans', Arial, sans-serif;
-            background-color: #f8f9fa;
-            color: #343a40;
-            margin: 0; /* Ensure no default margin */
-            padding: 0; /* Ensure no default padding */
-        }
-        .dashboard-container {
-            max-width: 900px; /* Wider container for dashboard content */
-            margin: 40px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-        }
-        .dashboard-container h1 {
-            text-align: center;
-            color: #0056b3; /* Consistent with index.html header h1 */
-            margin-bottom: 20px;
-        }
-        .dashboard-container h2 {
-            color: #333;
-            margin-bottom: 15px;
-        }
-        .dashboard-container p {
-            line-height: 1.6;
-            margin-bottom: 10px;
-        }
-        .logout-link {
-            text-align: center; /* Center the logout link */
-            margin-top: 30px;
-        }
-        .logout-link a {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #dc3545; /* Red for logout */
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            transition: background-color 0.3s ease;
-        }
-        .logout-link a:hover {
-            background-color: #c82333; /* Darker red on hover */
-            text-decoration: none;
-        }
-        /* Add nav styling here if you intend to reuse the nav from index.html */
-        /* For now, keeping it simple as per instructions */
-    </style>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 <body>
 
-    <!-- Optional: Include a common navigation bar if you have one -->
-    <!-- <?php // include 'navigation.php'; // Example if you create a separate nav file ?> -->
+    <nav>
+        <div class="site-title">Social & OTT Hub</div>
+        <ul>
+            <li><a href="index.php">Home</a></li>
+            <li><a href="index.php#products">Products</a></li>
+            <!-- Add other relevant links for a logged-in user if any -->
+            <li><a href="logout.php">Logout</a></li> 
+        </ul>
+    </nav>
 
-    <div class="dashboard-container">
-        <h1>User Dashboard</h1>
+    <main>
+        <div class="dashboard-container" data-aos="fade-up">
+            <h1>User Dashboard</h1>
 
-        <h2>Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h2>
+            <h2>Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h2>
 
-        <p>This is your dashboard. More features will be added here soon.</p>
-        <p>You can manage your account settings, view your activity, or access exclusive content from this page.</p>
-
-        <div class="logout-link">
-            <a href="logout.php">Logout</a>
+            <p>This is your dashboard. More features will be added here soon.</p>
+            <p>You can manage your account settings, view your activity, or access exclusive content from this page.</p>
+            
+            <!-- The logout link will now be part of the main nav for consistency -->
+            <!-- Or, if preferred as a button on the page: -->
+            <div class="logout-link-container" style="text-align: center; margin-top: 30px;">
+                 <a href="logout.php" class="button-danger">Logout</a>
+            </div>
         </div>
-    </div>
+    </main>
+
+    <footer>
+        <p>© <?php echo date("Y"); ?> Social & OTT Hub. All rights reserved.</p>
+        <p>
+            <a href="#">Facebook</a> | 
+            <a href="#">Twitter</a> | 
+            <a href="#">Terms of Service</a> | 
+            <a href="#">Privacy Policy</a>
+        </p>
+        <p>Get in touch: <a href="mailto:your-email@example.com">your-email@example.com</a></p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 700,
+        once: true,
+        offset: 50,
+        delay: 100,
+      });
+    </script>
 
 </body>
 </html>
