@@ -24,7 +24,31 @@ header h1 {
     margin-bottom: 10px;
 }
 
+/* Styling for Platform and Validity paragraphs */
+.product p strong {
+    margin-right: 5px; /* Adds a small space after "Platform:" or "Validity:" */
+}
+
+.product p {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: #555; /* Slightly lighter text for details */
+}
+
+/* Styling for Key Features list */
+.product ul {
+    margin-top: 5px;
+    margin-bottom: 10px; /* Space before the price */
+    padding-left: 20px; /* Standard indentation for lists */
+}
+
+.product ul li {
+    margin-bottom: 3px; /* Space between list items */
+    color: #555; /* Consistent text color */
+}
+
 .product p:last-child { /* Targeting the price paragraph */
     font-weight: bold;
     color: #28a745;
+    margin-top: 15px; /* More space above the price */
 }
