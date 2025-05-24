@@ -1,0 +1,30 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+header h1 {
+    text-align: center;
+    margin: 20px 0;
+    color: #333;
+}
+
+.product {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin: 15px;
+    background-color: #fff;
+}
+
+.product h2 {
+    color: #007bff;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.product p:last-child { /* Targeting the price paragraph */
+    font-weight: bold;
+    color: #28a745;
+}
