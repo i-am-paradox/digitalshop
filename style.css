@@ -5,9 +5,15 @@ body {
     font-family: 'Roboto', 'Open Sans', Arial, sans-serif;
     background-color: #f8f9fa; /* Lighter grey for a cleaner look */
     margin: 0;
-    padding: 20px; /* Added some padding to the body */
+    padding: 0; /* Reset body padding, nav and footer will span full width */
     color: #343a40; /* Darker grey for body text for better contrast */
 }
+
+/* Add padding to main content area instead of body, so nav/footer can be full-width */
+main {
+    padding: 20px;
+}
+
 
 header h1 {
     text-align: center;
@@ -16,15 +22,25 @@ header h1 {
     font-weight: 700; /* Bolder header text */
 }
 
+.product-grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px; /* Spacing between grid items */
+    padding: 20px 0; /* Padding for the container itself, adjust as needed */
+}
+
 .product {
     border: none; /* Removed border, will use box-shadow for card effect */
     padding: 20px; /* Increased padding for better spacing */
-    margin: 20px auto; /* Centered product cards with auto margin for L/R */
+    /* margin: 20px auto; REMOVED - Grid handles spacing via gap */
     background-color: #ffffff; /* White background for product cards */
     border-radius: 8px; /* Softer corners */
     box-shadow: 0 4px 8px rgba(0,0,0,0.05); /* Subtle box shadow */
     transition: all 0.3s ease-in-out; /* Smooth transition for hover */
-    max-width: 600px; /* Optional: constrain product card width for larger screens */
+    /* max-width: 600px; REMOVED - Grid handles width via minmax */
+    display: flex; /* Use flexbox for internal layout of product card */
+    flex-direction: column; /* Stack content vertically */
+    justify-content: space-between; /* Pushes price to the bottom */
 }
 
 .product:hover {
@@ -71,4 +87,70 @@ header h1 {
     font-size: 1.1em; /* Slightly larger price text */
     margin-top: 20px; /* More space above the price */
     text-align: right; /* Align price to the right */
+}
+
+/* --- Navigation Bar Styling --- */
+nav {
+    background-color: #343a40; /* Dark grey background */
+    color: #f8f9fa; /* Light text color */
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav .site-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #ffffff; /* White color for site title for emphasis */
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li:first-child {
+    margin-left: 0; /* Remove margin for the first item */
+}
+
+nav ul li a {
+    color: #f8f9fa; /* Light text color for links */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #007bff; /* Accent color on hover */
+    text-decoration: underline;
+}
+
+/* --- Footer Styling --- */
+footer {
+    background-color: #333; /* Slightly different dark grey from nav */
+    color: #ccc; /* Light grey text */
+    padding: 30px 20px; /* Increased padding for better spacing */
+    text-align: center;
+    margin-top: 40px; /* Space above the footer */
+}
+
+footer p {
+    margin: 10px 0; /* Adjusted margin for footer paragraphs */
+}
+
+footer a {
+    color: #00aaff; /* Brighter blue for footer links for visibility */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #ffffff; /* White on hover for footer links */
+    text-decoration: underline;
 }
