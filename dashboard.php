@@ -23,6 +23,10 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['username'])) {
         <ul>
             <li><a href="index.php">Home</a></li>
             <li><a href="index.php#products">Products</a></li>
+            <li><a href="category.php?name=Entertainment">Entertainment</a></li>
+            <li><a href="category.php?name=Music">Music</a></li>
+            <li><a href="category.php?name=Social+Media">Social Media</a></li>
+            <li><a href="category.php?name=Productivity">Productivity</a></li>
             <!-- Add other relevant links for a logged-in user if any -->
             <li><a href="logout.php">Logout</a></li> 
         </ul>
