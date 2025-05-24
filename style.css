@@ -1,8 +1,8 @@
-/* Import Google Font - Roboto (Best effort, may not work in all environments) */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+/* Import Google Font - Inter (Regular 400, Medium 500, Bold 700) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 
 body {
-    font-family: 'Roboto', 'Open Sans', Arial, sans-serif;
+    font-family: 'Inter', sans-serif;
     background-color: #f8f9fa; /* Lighter grey for a cleaner look */
     margin: 0;
     padding: 0; /* Reset body padding, nav and footer will span full width */
@@ -19,90 +19,128 @@ header h1 {
     text-align: center;
     margin: 20px 0 40px 0; /* Increased bottom margin */
     color: #0056b3; /* Professional dark blue */
-    font-weight: 700; /* Bolder header text */
+    font-weight: 700; /* Bolder header text, uses Inter Bold */
 }
 
 .product-grid-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px; /* Spacing between grid items */
+    gap: 25px; /* Slightly increased gap for more breathing room */
     padding: 20px 0; /* Padding for the container itself, adjust as needed */
 }
 
 .product {
-    border: none; /* Removed border, will use box-shadow for card effect */
-    padding: 20px; /* Increased padding for better spacing */
-    /* margin: 20px auto; REMOVED - Grid handles spacing via gap */
-    background-color: #ffffff; /* White background for product cards */
-    border-radius: 8px; /* Softer corners */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.05); /* Subtle box shadow */
-    transition: all 0.3s ease-in-out; /* Smooth transition for hover */
-    /* max-width: 600px; REMOVED - Grid handles width via minmax */
-    display: flex; /* Use flexbox for internal layout of product card */
-    flex-direction: column; /* Stack content vertically */
-    justify-content: space-between; /* Pushes price to the bottom */
+    background-color: #ffffff;
+    border-radius: 16px; /* Modern rounded look */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05); /* Softer, more modern shadow */
+    padding: 25px; /* Adequate internal padding */
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid transparent; /* For potential border animation on hover if desired */
 }
 
 .product:hover {
-    transform: translateY(-5px); /* Lift card on hover */
-    box-shadow: 0 6px 12px rgba(0,0,0,0.1); /* Enhanced shadow on hover */
+    transform: translateY(-6px); /* Slightly more lift */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08); /* Deeper shadow on hover */
 }
 
 .product h2 {
-    color: #007bff; /* Primary accent color (Bootstrap blue) for product names */
+    color: #0056b3; /* Consistent dark blue accent */
+    font-size: 1.5em; /* Adjusted font size */
+    font-weight: 700; /* Inter Bold */
     margin-top: 0;
-    margin-bottom: 15px; /* Increased margin for better separation */
-    font-weight: 700; /* Bolder product titles */
+    margin-bottom: 12px; /* Adjusted margin */
 }
 
 /* Styling for Platform, Validity, and other descriptive paragraphs */
 .product p {
-    margin-top: 8px;
-    margin-bottom: 8px;
-    color: #495057; /* Slightly darker grey for better readability */
-    line-height: 1.6; /* Improved line spacing for readability */
+    font-size: 0.95em; /* Slightly smaller for detail text */
+    color: #495057;
+    line-height: 1.6;
+    margin-top: 6px;
+    margin-bottom: 6px;
 }
 
 .product p strong {
+    font-weight: 500; /* Inter Medium */
+    color: #343a40;
     margin-right: 5px;
-    color: #343a40; /* Darker color for strong tags to make them stand out */
 }
+
+/* Key Features Heading - specifically target the <p> with <strong>Key Features:</strong> */
+.product p strong:only-child { /* Targets <strong> if it's the only child, common for "Key Features:" */
+    display: block; /* Make it block to control margin better */
+    font-size: 1.1em; /* Make "Key Features:" heading slightly larger */
+    font-weight: 700; /* Inter Bold */
+    color: #343a40;
+    margin-top: 15px; /* Space above Key Features heading */
+    margin-bottom: 8px; /* Space below Key Features heading */
+}
+
 
 /* Styling for Key Features list */
 .product ul {
-    margin-top: 8px;
-    margin-bottom: 15px; /* Space before the price */
-    padding-left: 20px;
-    color: #495057; /* Consistent text color */
+    list-style-type: none; /* Remove default bullets */
+    padding-left: 0; /* Remove default padding */
+    margin-top: 5px;
+    margin-bottom: 20px; /* More space before price */
+    color: #495057;
 }
 
 .product ul li {
-    margin-bottom: 5px; /* Space between list items */
-    line-height: 1.6; /* Improved line spacing */
+    font-size: 0.9em; /* Slightly smaller for list items */
+    margin-bottom: 6px;
+    padding-left: 20px; /* Indent for custom bullet */
+    position: relative;
+    line-height: 1.5;
 }
 
-.product p:last-child { /* Targeting the price paragraph */
+/* Custom bullet for list items */
+.product ul li::before {
+    content: '✓'; /* Checkmark character */
+    position: absolute;
+    left: 0;
+    color: #10b981; /* Modern green accent */
     font-weight: bold;
-    color: #28a745; /* Keep green for price, good contrast */
-    font-size: 1.1em; /* Slightly larger price text */
-    margin-top: 20px; /* More space above the price */
-    text-align: right; /* Align price to the right */
+}
+
+.product p:last-of-type { /* More robustly target the price paragraph */
+    font-size: 1.6em; /* Prominent price */
+    font-weight: 700; /* Inter Bold */
+    color: #10b981; /* Modern green accent */
+    margin-top: auto; /* Pushes price to the bottom if content above is short */
+    padding-top: 15px; /* Space above price, esp. if list is short */
+    text-align: left; /* Keep price left-aligned */
+    align-self: flex-start; /* Ensure it doesn't stretch if card has fixed height */
 }
 
 /* --- Navigation Bar Styling --- */
 nav {
-    background-color: #343a40; /* Dark grey background */
-    color: #f8f9fa; /* Light text color */
-    padding: 10px 20px;
+    /* Light-themed Glassmorphism */
+    background-color: rgba(255, 255, 255, 0.25); /* Semi-transparent white */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px); /* For Safari */
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02); /* Subtle shadow for depth */
+
+    color: #333; /* Dark text color for contrast */
+    padding: 15px 30px; /* Slightly increased padding */
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    /* Sticky Navigation */
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Ensure it's above other content */
 }
 
 nav .site-title {
-    font-size: 1.5em;
-    font-weight: bold;
-    color: #ffffff; /* White color for site title for emphasis */
+    font-size: 1.6em; /* Slightly larger */
+    font-weight: 700; /* Uses Inter Bold */
+    color: #0056b3; /* Professional dark blue, good contrast on light glass */
 }
 
 nav ul {
@@ -113,7 +151,7 @@ nav ul {
 }
 
 nav ul li {
-    margin-left: 20px;
+    margin-left: 25px; /* Slightly increased spacing */
 }
 
 nav ul li:first-child {
@@ -121,14 +159,17 @@ nav ul li:first-child {
 }
 
 nav ul li a {
-    color: #f8f9fa; /* Light text color for links */
+    color: #0056b3; /* Dark blue for links, good contrast */
     text-decoration: none;
-    transition: color 0.3s ease;
+    font-weight: 500; /* Inter Medium for nav links */
+    transition: color 0.3s ease, transform 0.2s ease;
 }
 
-nav ul li a:hover {
-    color: #007bff; /* Accent color on hover */
-    text-decoration: underline;
+nav ul li a:hover,
+nav ul li a:focus { /* Added focus state for accessibility */
+    color: #007bff; /* Brighter blue on hover/focus */
+    transform: translateY(-2px); /* Subtle lift effect */
+    /* text-decoration: underline; Removed underline for a cleaner look */
 }
 
 /* --- Footer Styling --- */
@@ -145,12 +186,392 @@ footer p {
 }
 
 footer a {
-    color: #00aaff; /* Brighter blue for footer links for visibility */
+    color: #007bff; /* Consistent blue accent for links */
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 footer a:hover {
-    color: #ffffff; /* White on hover for footer links */
+    color: #0056b3; /* Darker blue on hover */
     text-decoration: underline;
+}
+
+/* --- General Button Styling (for forms, etc.) --- */
+.button-primary { /* A general class for primary action buttons */
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #0056b3; /* Blue accent */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em; /* Consistent font size */
+    font-weight: 500; /* Inter Medium */
+    text-decoration: none; /* For <a> tags styled as buttons */
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.button-primary:hover,
+.button-primary:focus {
+    background-color: #004085; /* Darker blue on hover/focus */
+    color: white;
+}
+
+/* Apply to form buttons if they don't have specific classes and use standard type */
+.form-group button[type="submit"] {
+    /* Using the .button-primary style by default for form submit buttons */
+    /* This might be overridden by more specific styles in PHP files if not removed from there */
+    /* For best practice, those inline styles for buttons should be removed from PHP files */
+    /* and rely on this central style. */
+    width: 100%; /* Form buttons often span full width */
+    padding: 10px; /* Adjust padding if needed for full width */
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.form-group button[type="submit"]:hover,
+.form-group button[type="submit"]:focus {
+    background-color: #004085; /* Darker blue */
+}
+
+
+/* --- Form Page Specific Headings (if not covered by header h1) --- */
+/* This ensures H1s on form pages like register_form.php, login_form.php also use the blue accent */
+/* Assuming they are within a .form-container as per previous structure */
+.form-container h1 {
+    color: #0056b3; /* Blue accent for form titles */
+    text-align: center; /* Ensure this is consistent if inline styles are removed */
+    margin-bottom: 20px; /* Ensure this is consistent if inline styles are removed */
+}
+
+/* Ensure form elements inherit global font */
+.form-group label,
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group textarea { /* Added textarea for completeness */
+    font-family: 'Inter', sans-serif;
+    font-size: 1em; /* Base font size for form elements */
+    color: #343a40; /* Consistent text color */
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da; /* Softer border color for inputs */
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 5px; /* Add a little space between label and input */
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group input[type="password"]:focus,
+.form-group textarea:focus {
+    border-color: #007bff; /* Blue accent on focus */
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25); /* Glow effect on focus */
+    outline: none;
+}
+
+/* Styling for form page links (e.g., "Already have an account?") */
+.form-page-link { /* General class for these links */
+    text-align: center;
+    margin-top: 20px;
+}
+
+.form-page-link a {
+    color: #0056b3; /* Consistent blue accent */
+    text-decoration: none;
+    font-weight: 500; /* Inter Medium */
+}
+
+.form-page-link a:hover {
+    text-decoration: underline;
+    color: #004085; /* Darker blue */
+}
+
+.button-danger {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #dc3545; /* Red accent for danger/logout */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 500; /* Inter Medium */
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.button-danger:hover,
+.button-danger:focus {
+    background-color: #c82333; /* Darker red on hover/focus */
+    color: white;
+}
+
+/* Styling for session messages (errors/success) */
+.message {
+    padding: 15px; /* More padding */
+    margin-bottom: 20px;
+    border-radius: 6px; /* Slightly more rounded */
+    font-size: 0.95em;
+    list-style-position: inside; /* For errors list */
+}
+.message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+.message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+.message ul {
+    padding-left: 0; /* Reset padding for ul inside message */
+    margin: 0;
+}
+
+
+/* --- Hero Section Styling --- */
+.hero-section {
+    background: linear-gradient(to right, #e9ecef, #f8f9fa); /* Subtle gradient */
+    color: #343a40; /* Dark grey, consistent with body text */
+    padding: 80px 20px;
+    text-align: center;
+    /* Takes full width by default as a block element */
+}
+
+.hero-section h2 {
+    font-size: 2.8em; /* Large font size for the tagline */
+    font-weight: 700; /* Bold Inter */
+    margin: 0; /* No margin as it's the only element for now */
+    color: #0056b3; /* Professional dark blue, consistent with header h1 */
+}
+
+/* If a paragraph <p> was added to hero-section, style it like this: */
+/*
+.hero-section p {
+    font-size: 1.2em;
+    font-weight: 400; / Inter Regular /
+    line-height: 1.6;
+    color: #495057; / Slightly lighter than the heading /
+    margin-top: 15px;
+}
+*/
+
+/* --- Responsive Adjustments --- */
+
+/* Medium screens (tablets, larger phones) */
+@media (max-width: 768px) {
+    main {
+        padding: 15px; /* Slightly reduce main padding */
+    }
+
+    nav {
+        padding: 10px 15px; /* Reduce nav padding */
+        flex-direction: column; /* Stack site title and nav links */
+        align-items: flex-start; /* Align items to the start */
+    }
+
+    nav .site-title {
+        font-size: 1.4em; /* Slightly reduce site title font size */
+        margin-bottom: 10px; /* Add space between title and links */
+    }
+
+    nav ul {
+        flex-direction: column; /* Stack nav links vertically */
+        width: 100%; /* Make ul take full width for alignment */
+    }
+
+    nav ul li {
+        margin-left: 0; /* Remove left margin */
+        margin-bottom: 8px; /* Add bottom margin for stacked links */
+        width: 100%; /* Make list items take full width */
+    }
+    nav ul li:last-child {
+        margin-bottom: 0;
+    }
+
+    nav ul li a {
+        display: block; /* Make links block elements for full-width tap targets */
+        padding: 8px 0; /* Add some padding to stacked links */
+        font-size: 0.95em;
+    }
+    nav ul li a:hover,
+    nav ul li a:focus {
+        transform: none; /* Remove lift effect on stacked items if it causes layout issues */
+    }
+
+
+    .hero-section {
+        padding: 60px 15px; /* Reduce hero padding */
+    }
+
+    .hero-section h2 {
+        font-size: 2.2em; /* Reduce hero heading font size */
+    }
+
+    header h1 {
+        font-size: 1.8em; /* Reduce main page title font size */
+        margin: 15px 0 30px 0;
+    }
+
+    .product-grid-container {
+        gap: 20px; /* Slightly reduce gap */
+    }
+
+    .product {
+        padding: 20px; /* Reduce product card padding */
+    }
+
+    .product h2 {
+        font-size: 1.3em;
+    }
+
+    .product p, .product ul li {
+        font-size: 0.9em;
+    }
+    .product p:last-of-type { /* Price */
+        font-size: 1.4em;
+    }
+
+    /* Form container adjustments */
+    .form-container {
+        margin: 20px 15px; /* Reduce margin for smaller screens */
+        padding: 15px;
+    }
+    .form-container h1 {
+        font-size: 1.6em;
+    }
+
+    footer {
+        padding: 20px 15px; /* Reduce footer padding */
+    }
+    footer p {
+        font-size: 0.9em;
+    }
+}
+
+/* --- Floating Action Button (FAB) Styling --- */
+.fab {
+    display: none; /* Hidden by default on larger screens */
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: #0056b3; /* Consistent blue accent */
+    color: white;
+    border: none;
+    border-radius: 50%; /* Circular */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25); /* Slightly more noticeable shadow */
+    font-size: 1.1em; /* Adjusted for "Chat" text */
+    font-weight: 500; /* Inter Medium */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1050; /* Above most elements */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.fab:hover,
+.fab:focus {
+    background-color: #004085; /* Darker blue on hover/focus */
+    transform: scale(1.05); /* Slight scale effect */
+    outline: none; /* Remove default focus outline if custom focus is handled */
+}
+
+/* Show FAB on medium and smaller screens */
+@media (max-width: 768px) {
+    .fab {
+        display: flex; /* Show the FAB */
+    }
+}
+
+/* Small screens (smartphones) */
+@media (max-width: 480px) {
+    main {
+        padding: 10px;
+    }
+    nav {
+        padding: 10px;
+    }
+    nav .site-title {
+        font-size: 1.2em; /* Further reduce site title */
+    }
+    nav ul li a {
+        font-size: 0.9em; /* Further reduce nav link font size */
+    }
+
+
+    .hero-section {
+        padding: 40px 10px; /* Further reduce hero padding */
+    }
+
+    .hero-section h2 {
+        font-size: 1.8em; /* Further reduce hero heading font size */
+    }
+
+    header h1 {
+        font-size: 1.5em; /* Further reduce main page title */
+        margin: 10px 0 20px 0;
+    }
+
+    .product-grid-container {
+        /* auto-fit with minmax(300px, 1fr) will naturally stack to 1 column */
+        /* We can ensure the minmax doesn't force horizontal scroll if padding is an issue */
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Slightly reduce min for very small screens */
+        gap: 15px;
+    }
+
+    .product {
+        padding: 15px; /* Further reduce card padding */
+        border-radius: 12px; /* Slightly smaller radius */
+    }
+    .product h2 {
+        font-size: 1.2em;
+    }
+    .product p, .product ul li {
+        font-size: 0.85em;
+    }
+    .product p:last-of-type { /* Price */
+        font-size: 1.3em;
+    }
+    .product ul li::before {
+        font-size: 0.9em; /* Adjust custom bullet size if needed */
+    }
+
+
+    /* Form container adjustments */
+    .form-container {
+        margin: 15px 10px; /* Further reduce margin */
+        padding: 10px;
+    }
+    .form-container h1 {
+        font-size: 1.4em;
+    }
+    .form-group label, .form-group input, .form-group button {
+        font-size: 0.9em;
+    }
+
+    footer p {
+        font-size: 0.8em;
+    }
+    footer a {
+        font-size: 0.85em; /* Ensure links are tappable */
+    }
 }
